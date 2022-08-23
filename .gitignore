@@ -4,7 +4,8 @@
 pretrained_models
 .DS_STORE
 .DS_Store
-model/*
+model/for_claims/*
+model/for_premises/*
 
 ## python gitignore template
 
