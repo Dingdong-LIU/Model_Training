@@ -1,3 +1,4 @@
+export CUDA_VISIBLE_DEVICES=0
 python run_summarization.py \
     --model_name_or_path model/for_claims/distilbart-cnn-12-6 \
     --do_train true \
