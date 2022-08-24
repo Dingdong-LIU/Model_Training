@@ -49,7 +49,7 @@ def load_objects(data_file_path, name, return_list_of_string=False, verbose=Fals
         # examime if the post is too long. if so, call special handler
         post_content = ET.tostring(
             post, encoding='utf-8', method='text').decode('utf-8').strip()
-        if len(post_content.split()) > 300:
+        if len(post_content.split()) > 100:
             # print("Too long: ", data_file_path + " " + post.tag)
             ## call long post handler
             try:
