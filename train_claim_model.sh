@@ -10,18 +10,18 @@ python run_summarization.py \
     --text_column text \
     --summary_column claim \
     --source_prefix "claim: " \
-    --output_dir model/for_claims/checkpoint/train-3600 \
+    --output_dir model/for_claims/checkpoint/train-100 \
     --overwrite_output_dir \
     --per_device_train_batch_size=4 \
     --per_device_eval_batch_size=4 \
     --predict_with_generate \
     --load_best_model_at_end false \
-    --num_train_epochs 3600 \
+    --num_train_epochs 100 \
     --gradient_accumulation_steps 4 \
     --no_cuda false \
     --ignore_pad_token_for_loss true \
     --evaluation_strategy steps \
-    --logging_steps 100
+    --logging_steps 250
     # --evaluation_strategy epoch \
 
 
