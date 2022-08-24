@@ -69,6 +69,8 @@ def load_objects(data_file_path, name, return_list_of_string=False, verbose=Fals
         # format output
         if not return_list_of_string:
             object_string = '\n'.join(object_string)
+            if len(object_string.split()) > 100:
+                print(f"Too long in {post.tag} (lenth {len(object_string.split())}) of file:\n{data_file_path}")
         all_object_string.append((post_content,object_string))
     if verbose:
         print(f'Get {len(all_object_string)} {name}s')
