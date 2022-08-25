@@ -6,7 +6,7 @@ python run_summarization.py \
     --do_predict true \
     --train_file data/claims/train.csv \
     --validation_file data/claims/test.csv \
-    --test_file data/claims/test.csv \
+    --test_file data/claims/train.csv \
     --text_column text \
     --summary_column claim \
     --source_prefix "claim: " \
