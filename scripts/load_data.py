@@ -57,9 +57,9 @@ def load_objects(data_file_path, name, return_list_of_string=False, verbose=Fals
                 if not return_list_of_string:
                     for i, (x, y) in enumerate(output):
                         output[i] = (x, '\n'.join(y))
+                all_object_string.extend(output)
             except ValueError as err:
                 print(f'Error: {err} in {post.tag} of file:\n{data_file_path}')
-            all_object_string.extend(output)
             continue
 
         # get all target(claim/premise) strings
@@ -140,6 +140,10 @@ def exact_match(list_of_string, target):
 def handle_long_post(root, name):
     paragraphs = ET.tostring(root, encoding='utf-8',
                              method='text').decode('utf-8').strip().split('\n\n')
+    # length check
+    for p in paragraphs:
+        if len(p.split()) > 300:
+            raise ValueError(f"Paragraph too long with length {len(p.split())}")
     target_objects = root.findall(name)
     output_dict = {p:[] for p in paragraphs}
     for p in target_objects:
