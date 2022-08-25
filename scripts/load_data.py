@@ -49,7 +49,7 @@ def load_objects(data_file_path, name, return_list_of_string=False, verbose=Fals
         # examime if the post is too long. if so, call special handler
         post_content = ET.tostring(
             post, encoding='utf-8', method='text').decode('utf-8').strip()
-        if len(post_content.split()) > 100:
+        if len(post_content.split()) > 200:
             # print("Too long: ", data_file_path + " " + post.tag)
             ## call long post handler
             try:
@@ -59,6 +59,7 @@ def load_objects(data_file_path, name, return_list_of_string=False, verbose=Fals
                         output[i] = (x, '\n'.join(y))
             except ValueError as err:
                 print(f'Error: {err} in {post.tag} of file:\n{data_file_path}')
+            all_object_string.extend(output)
             continue
 
         # get all target(claim/premise) strings
@@ -126,7 +127,7 @@ def fuzz_match(list_of_string, target):
     ratios = [partial_ratio(x, target) for x in list_of_string]
     index = np.argmax(ratios)
     if ratios[index] < 90:
-        raise ValueError(f'No good matching with score {ratios[index]} with target "{target}"')
+        raise ValueError(f'No good matching with score {ratios[index]} with target "{target}" in list of string {list_of_string}')
     return list_of_string[index]
 
 def exact_match(list_of_string, target):
