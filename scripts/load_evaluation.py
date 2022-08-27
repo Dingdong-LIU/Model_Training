@@ -1,7 +1,7 @@
 import os
 import json
 from glob import glob
-from load_data import fuzz_match, exact_match
+from load_data import fuzz_match_within_list, exact_match_within_list
 
 
 def load_evaluation(base_dir, object_name):
@@ -67,9 +67,9 @@ def map_paragraph_object(p_o_pair, return_list_of_string=False):
     paras, text = p_o_pair[0], p_o_pair[1]
     para_collect = {p:[] for p in paras}
     for t in text:
-        destiny = exact_match(paras, t)
+        destiny = exact_match_within_list(paras, t)
         if destiny is None:
-            destiny = fuzz_match(paras, t)
+            destiny = fuzz_match_within_list(paras, t)
         para_collect[destiny].append(t)
     output = []
     text = ""

@@ -123,14 +123,14 @@ def partial_ratio(s1, s2):
 
     return max(scores) * 100.0
 
-def fuzz_match(list_of_string, target):
+def fuzz_match_within_list(list_of_string, target):
     ratios = [partial_ratio(x, target) for x in list_of_string]
     index = np.argmax(ratios)
     if ratios[index] < 90:
         raise ValueError(f'No good matching with score {ratios[index]} with target "{target}" in list of string {list_of_string}')
     return list_of_string[index]
 
-def exact_match(list_of_string, target):
+def exact_match_within_list(list_of_string, target):
     for s in list_of_string:
         if target in s:
             return s
@@ -152,9 +152,9 @@ def handle_long_post(root, name):
         #     output_dict[belonging].append(p.text)
         # except ValueError as err:
         #     print(f'Error {err}', p.text)
-        belonging = exact_match(paragraphs, p.text)
+        belonging = exact_match_within_list(paragraphs, p.text)
         if belonging is None:
-            belonging = fuzz_match(paragraphs, p.text)
+            belonging = fuzz_match_within_list(paragraphs, p.text)
         output_dict[belonging].append(p.text)
     return [(x,y) for x,y in output_dict.items() if len(y) > 0]
 
