@@ -1,16 +1,16 @@
 export CUDA_VISIBLE_DEVICES=0
 python run_summarization.py \
-    --model_name_or_path model/for_claims/checkpoint/train-300-t1 \
+    --model_name_or_path model/for_premises/checkpoint/train-300-p1 \
     --do_train false \
     --do_eval true \
     --do_predict true \
-    --train_file data/claims/train.csv \
-    --validation_file data/claims/evaluation-auto-driving.csv \
-    --test_file data/claims/evaluation-bitcoin-invest.csv \
+    --train_file data/premises/train.csv \
+    --validation_file data/premises/evaluation-auto-driving.csv \
+    --test_file data/premises/evaluation-bitcoin-invest.csv \
     --text_column text \
-    --summary_column claim \
-    --source_prefix "claim: " \
-    --output_dir model/for_claims/evaluation \
+    --summary_column premise \
+    --source_prefix "premise: " \
+    --output_dir model/for_premises/evaluation \
     --overwrite_output_dir \
     --per_device_train_batch_size=4 \
     --per_device_eval_batch_size=4 \
