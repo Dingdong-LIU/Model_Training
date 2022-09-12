@@ -40,7 +40,7 @@ def get_paragraphs_with_objects(json_files, object_name):
     return output
 
 
-def find_json_files(base_dir='datasets/auto-driving'):
+def find_json_files(base_dir='datasets/human_label_v1/auto-driving'):
     """Find json files in base direcotry
 
     Args:
